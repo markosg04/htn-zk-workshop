@@ -1,0 +1,15 @@
+{
+  "name": "solution",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Markos Georghiades",
+  "license": "ISC",
+  "dependencies": {
+    "circomlib": "^2.0.5",
+    "snarkjs": "^0.7.0"
+  }
+}
