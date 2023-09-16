@@ -1,3 +1,16 @@
+if ! command -v wget &> /dev/null; then
+    echo "wget not found! Installing wget..."
+    # Detect OS and install wget accordingly
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        sudo apt update && sudo apt install wget
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        brew install wget
+    else
+        echo "Operating system not supported for wget installation. Please install wget manually."
+        exit 1
+    fi
+fi
+
 # Download powersOfTau28_hez_final_12.ptau if it does not exist
 if [ ! -f "powersOfTau28_hez_final_12.ptau" ]; then
     wget https://hermez.s3-eu-west-1.amazonaws.com/powersOfTau28_hez_final_12.ptau
