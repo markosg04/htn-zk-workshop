@@ -93,6 +93,7 @@ function MagicSquareVerifier() {
                 setVerificationMessage('OK!');
             } else {
                 setVerificationSuccess(false);
+                console.log(isValid)
                 setVerificationMessage('Something went wrong');
             }
         } catch (error) {
