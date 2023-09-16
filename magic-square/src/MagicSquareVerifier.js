@@ -52,6 +52,7 @@ const VerificationMessage = styled.p`
     color: ${({ isSuccess }) => (isSuccess ? 'green' : 'red')};
     font-weight: bold;
     margin-top: 10px;
+    width: 200px;
 `;
 
 function MagicSquareVerifier() {
