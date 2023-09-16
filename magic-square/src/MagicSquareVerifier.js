@@ -9,7 +9,6 @@ const Table = styled.table`
     width: 200px;
     border: 2px solid #2c3e50;
 `;
-
 const Cell = styled.td`
     border: 1px solid #7f8c8d;
     width: 60px;
