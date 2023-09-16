@@ -3,14 +3,6 @@ import styled from 'styled-components';
 import verification_key from './verification_key.json';
 const snarkjs = window.snarkjs;
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;  // This will ensure the content occupies the full viewport height.
-`;
-
 const Table = styled.table`
     border-collapse: collapse;
     margin-top: 20px;
@@ -39,13 +31,6 @@ const Input = styled.input`
     text-align: center;
     background-color: transparent;
     outline: none;
-    -webkit-appearance: none; /* For removing the spinners/arrows */
-    -moz-appearance: textfield; /* For Firefox */
-    &::-webkit-inner-spin-button, 
-    &::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
 `;
 
 const Button = styled.button`
@@ -68,8 +53,6 @@ const VerificationMessage = styled.p`
     color: ${({ isSuccess }) => (isSuccess ? 'green' : 'red')};
     font-weight: bold;
     margin-top: 10px;
-    text-align: center;
-    width: 100%;      
 `;
 
 function MagicSquareVerifier() {
@@ -110,12 +93,12 @@ function MagicSquareVerifier() {
                 setVerificationMessage('OK!');
             } else {
                 setVerificationSuccess(false);
-                setVerificationMessage('Proof is Incorrect');
+                setVerificationMessage('Something went wrong');
             }
         } catch (error) {
             console.error("Error generating proof:", error);
             setVerificationSuccess(false);
-            setVerificationMessage('Proof is Incorrect');
+            setVerificationMessage('Something went wrong');
         }
     };
     
@@ -127,31 +110,31 @@ function MagicSquareVerifier() {
     };
 
     return (
-        <Wrapper>
-            <Table>
-                <tbody>
-                    {grid.map((row, rowIndex) => (
-                        <tr key={rowIndex}>
-                            {row.map((value, colIndex) => (
-                                <Cell key={colIndex}>
-                                    <Input 
-                                        type="number" 
-                                        value={value}
-                                        onChange={(e) => handleInputChange(rowIndex, colIndex, e.target.value)} 
-                                    />
-                                </Cell>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <Button onClick={handleGenerateProof}>Generate Proof</Button>
-            {verificationMessage && (
-                <VerificationMessage isSuccess={verificationSuccess}>
-                    {verificationMessage}
-                </VerificationMessage>
-            )}
-        </Wrapper>
+        <div>
+        <Table>
+            <tbody>
+                {grid.map((row, rowIndex) => (
+                    <tr key={rowIndex}>
+                        {row.map((value, colIndex) => (
+                            <Cell key={colIndex}>
+                                <Input 
+                                    type="number" 
+                                    value={value}
+                                    onChange={(e) => handleInputChange(rowIndex, colIndex, e.target.value)} 
+                                />
+                            </Cell>
+                        ))}
+                    </tr>
+                ))}
+            </tbody>
+        </Table>
+        <Button onClick={handleGenerateProof}>Generate Proof</Button>
+        {verificationMessage && (
+            <VerificationMessage isSuccess={verificationSuccess}>
+                {verificationMessage}
+            </VerificationMessage>
+        )}
+    </div>
     );
 }
 
